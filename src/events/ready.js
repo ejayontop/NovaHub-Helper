@@ -13,7 +13,8 @@ export default {
   async execute(client) {
     try {
       client.user.setPresence(config.bot.presence);
-
+      updatePresence(client);
+      setInterval(() => updatePresence(client), 10 * 60 * 1000); 
       startupLog(`Ready! Logged in as ${client.user.tag}`);
       startupLog(`Serving ${client.guilds.cache.size} guild(s)`);
       startupLog(`Loaded ${client.commands.size} commands`);
