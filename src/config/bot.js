@@ -23,12 +23,19 @@ export const botConfig = {
     // 5 = Competing
     activities: [
       {
-        // Text users will see (example: "Playing /help | Titan Bot").
-        name: "NOVA HUB ON TOP",
+        // Text users will see (example: "Member Count: 1,234").
+        // The literal "{memberCount}" placeholder is swapped out at
+        // runtime by getPresenceActivities() below.
+        name: "Member Count: {memberCount}",
         // Activity type number (0 = Playing).
         type: 0,
       },
     ],
+
+    // How often (ms) the ready-event refresh loop should re-check the
+    // member count as a safety net, in case a join/leave event is missed.
+    // 600000 = 10 minutes.
+    refreshInterval: 600000,
   },
 
   // =========================
@@ -537,6 +544,52 @@ export function getRandomColor() {
     typeof color === "string" ? color : Object.values(color),
   );
   return colors[Math.floor(Math.random() * colors.length)];
+}
+
+// =========================
+// PRESENCE HELPERS (dynamic member count)
+// =========================
+// Config data alone can't know the live member count — that only exists
+// once the client is logged in and has a guild cache. These helpers take
+// a count (or a client) and return presence-ready activity objects, so
+// the "{memberCount}" placeholder above always renders as a real number.
+
+/**
+ * Build the activities array for setPresence(), substituting
+ * "{memberCount}" in any activity name with the given count.
+ * @param {number} memberCount
+ * @returns {Array<{name: string, type: number}>}
+ */
+export function getPresenceActivities(memberCount) {
+  const formatted = Number(memberCount || 0).toLocaleString();
+  return botConfig.presence.activities.map((activity) => ({
+    ...activity,
+    name: activity.name.replace("{memberCount}", formatted),
+  }));
+}
+
+/**
+ * Compute the member count to show, summing across all cached guilds
+ * (correct for both single- and multi-guild bots).
+ * @param {import('discord.js').Client} client
+ * @returns {number}
+ */
+export function getTotalMemberCount(client) {
+  return client.guilds.cache.reduce((total, guild) => total + guild.memberCount, 0);
+}
+
+/**
+ * Push an updated presence to Discord based on the client's current
+ * guild cache. Call this on `ready`, and again on `guildMemberAdd` /
+ * `guildMemberRemove` (and optionally on an interval as a safety net).
+ * @param {import('discord.js').Client} client
+ */
+export function updatePresence(client) {
+  const memberCount = getTotalMemberCount(client);
+  client.user.setPresence({
+    status: botConfig.presence.status,
+    activities: getPresenceActivities(memberCount),
+  });
 }
 
 export default botConfig;
