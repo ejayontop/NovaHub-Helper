@@ -1,4 +1,5 @@
 import { Events } from "discord.js";
+import { updatePresence } from "../utils/presence.js";
 import { logger, startupLog } from "../utils/logger.js";
 import config from "../config/application.js";
 import { reconcileReactionRoleMessages } from "../services/reactionRoleService.js";
