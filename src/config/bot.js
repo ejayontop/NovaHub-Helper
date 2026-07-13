@@ -26,7 +26,7 @@ export const botConfig = {
         // Text users will see (example: "Member Count: 1,234").
         // The literal "{memberCount}" placeholder is swapped out at
         // runtime by getPresenceActivities() below.
-        name: "Member Count: {memberCount}",
+        name: "{memberCount} active premium players",
         // Activity type number (0 = Playing).
         type: 0,
       },
