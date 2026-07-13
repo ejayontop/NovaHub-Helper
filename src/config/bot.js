@@ -21,14 +21,17 @@ export const botConfig = {
     // 3 = Watching
     // 4 = Custom
     // 5 = Competing
-    activities: [
-      {
-        // Text users will see (example: "Playing /help | Titan Bot").
-        name: "BEST SCRIPT",
-        // Activity type number (0 = Playing).
-        type: 0,
-      },
-    ],
+   activities: [
+
+  {
+
+    name: "{{memberCount}} active premium member",
+
+    type: ActivityType.Watching,
+
+  },
+
+],
   },
 
   // =========================
