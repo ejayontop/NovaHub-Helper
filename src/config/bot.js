@@ -27,7 +27,7 @@ export const botConfig = {
 
     name: "{{memberCount}} active premium member",
 
-    type: ActivityType.Watching,
+    type: 3,
 
   },
 
