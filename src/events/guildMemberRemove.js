@@ -7,6 +7,9 @@ import { getServerCounters, updateCounter } from '../services/serverstatsService
 import { getGuildBirthdays, deleteBirthday } from '../utils/database.js';
 import { deleteUserLevelData } from '../services/leveling.js';
 import { logger } from '../utils/logger.js';
+import { updatePresence } from '../utils/presence.js';
+// ...
+updatePresence(member.client);
 
 export default {
   name: Events.GuildMemberRemove,
