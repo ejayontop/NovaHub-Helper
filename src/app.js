@@ -3,7 +3,7 @@ import { Client, Collection, GatewayIntentBits } from 'discord.js';
 import { REST } from '@discordjs/rest';
 import express from 'express';
 import cron from 'node-cron';
-
+import { recordHeartbeat, removeSession, getActiveCount } from './services/activeScriptService.js';
 import config from './config/application.js';
 import { initializeDatabase } from './utils/database.js';
 import { getGuildConfig } from './services/guildConfig.js';
@@ -213,6 +213,35 @@ class TitanBot extends Client {
         timestamp: new Date().toISOString()
       });
     });
+
+    const HEARTBEAT_API_KEY = process.env.HEARTBEAT_API_KEY || 'change-me';
+
+app.post('/heartbeat', express.json(), (req, res) => {
+  const auth = req.headers.authorization || '';
+  if (auth !== `Bearer ${HEARTBEAT_API_KEY}`) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  const { id } = req.body || {};
+  if (!id || typeof id !== 'string' || id.length > 100) {
+    return res.status(400).json({ error: 'Missing or invalid id' });
+  }
+  recordHeartbeat(id);
+  res.status(200).json({ ok: true });
+});
+
+app.post('/leave', express.json(), (req, res) => {
+  const auth = req.headers.authorization || '';
+  if (auth !== `Bearer ${HEARTBEAT_API_KEY}`) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  const { id } = req.body || {};
+  if (id) removeSession(id);
+  res.status(200).json({ ok: true });
+});
+
+app.get('/active-count', (req, res) => {
+  res.status(200).json({ activeCount: getActiveCount() });
+});
 
     const startServer = (port, attempt = 0) => {
       let hasStartedListening = false;
