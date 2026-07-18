@@ -12,7 +12,7 @@ export const botConfig = {
  presence: {
   status: "online",
   activities: [
-    { name: "MemberCount: {memberCount} | Active: {activePlayers}", type: 0 },
+    { name: "{memberCount} active players | {activePlayers} active premium players", type: 0 },
   ],
 },
 
