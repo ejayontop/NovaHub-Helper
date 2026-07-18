@@ -10,33 +10,18 @@ export const botConfig = {
   // - "dnd"       = red do-not-disturb
   // - "invisible" = appears offline
   presence: {
-    // Current online state shown on Discord.
-    status: "online",
+  status: "online",
+  activities: [
+    { name: "Member Count: {memberCount}", type: 0 },   // Playing
+    { name: "Active Players: {activePlayers}", type: 3 }, // Watching
+  ],
+  refreshInterval: 20000, // 20s rotation between the two
+},
 
-    // Activity lines shown under the bot name.
-    // `type` number mapping from Discord:
-    // 0 = Playing
-    // 1 = Streaming
-    // 2 = Listening
-    // 3 = Watching
-    // 4 = Custom
-    // 5 = Competing
-    activities: [
-      {
-        // Text users will see (example: "Member Count: 1,234").
-        // The literal "{memberCount}" placeholder is swapped out at
-        // runtime by getPresenceActivities() below.
-        name: "{memberCount} active premium players",
-        // Activity type number (0 = Playing).
-        type: 0,
-      },
-    ],
-
-    // How often (ms) the ready-event refresh loop should re-check the
-    // member count as a safety net, in case a join/leave event is missed.
-    // 600000 = 10 minutes.
-    refreshInterval: 600000,
-  },
+// New section — wherever makes sense, e.g. near the bottom of botConfig
+activeScript: {
+  endpoint: process.env.ACTIVE_SCRIPT_ENDPOINT || "https://your-server.example.com",
+},
 
   // =========================
   // COMMAND BEHAVIOR
