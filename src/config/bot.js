@@ -12,7 +12,7 @@ export const botConfig = {
   presence: {
   status: "online",
   activities: [
-    { name: "Member Count: {memberCount}", type: 0 },   // Playing
+    { name: "{memberCount} premium players active", type: 0 },   // Playing
     { name: "Active Players: {activePlayers}", type: 3 }, // Watching
   ],
   refreshInterval: 20000, // 20s rotation between the two
