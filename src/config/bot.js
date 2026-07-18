@@ -18,7 +18,7 @@ export const botConfig = {
 
 // New section — wherever makes sense, e.g. near the bottom of botConfig
 activeScript: {
-  endpoint: process.env.ACTIVE_SCRIPT_ENDPOINT || "https://your-server.example.com",
+  endpoint: process.env.ACTIVE_SCRIPT_ENDPOINT || "novahub-helper-production.up.railway.app",
 },
 
   // =========================
