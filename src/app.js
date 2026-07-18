@@ -214,7 +214,7 @@ class TitanBot extends Client {
       });
     });
 
-    const HEARTBEAT_API_KEY = process.env.HEARTBEAT_API_KEY || 'change-me';
+    const HEARTBEAT_API_KEY = process.env.HEARTBEAT_API_KEY || 'a3f9c21e8b47d0f6c9e2a1b4d8f0e6c3a9d2b7e4f1c8a0b6';
 
 app.post('/heartbeat', express.json(), (req, res) => {
   const auth = req.headers.authorization || '';
