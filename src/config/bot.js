@@ -9,13 +9,11 @@ export const botConfig = {
   // - "idle"      = yellow moon
   // - "dnd"       = red do-not-disturb
   // - "invisible" = appears offline
-  presence: {
+ presence: {
   status: "online",
   activities: [
-    { name: "{memberCount} premium players active", type: 0 },   // Playing
-    { name: "Active Players: {activePlayers}", type: 3 }, // Watching
+    { name: "MemberCount: {memberCount} | Active: {activePlayers}", type: 0 },
   ],
-  refreshInterval: 20000, // 20s rotation between the two
 },
 
 // New section — wherever makes sense, e.g. near the bottom of botConfig
