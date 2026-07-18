@@ -14,7 +14,7 @@ export default {
   async execute(client) {
     try {
       updatePresence(client);
-      setInterval(() => updatePresence(client), 10 * 60 * 1000); 
+      setInterval(() => updatePresence(client), 60 * 1000); 
       startupLog(`Ready! Logged in as ${client.user.tag}`);
       startupLog(`Serving ${client.guilds.cache.size} guild(s)`);
       startupLog(`Loaded ${client.commands.size} commands`);
