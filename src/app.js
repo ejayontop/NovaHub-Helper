@@ -228,6 +228,13 @@ app.post('/heartbeat', express.json(), (req, res) => {
   recordHeartbeat(id);
   res.status(200).json({ ok: true });
 });
+  app.get('/member-count', (req, res) => {
+  const memberCount = this.guilds.cache.reduce(
+    (total, guild) => total + guild.memberCount,
+    0
+  );
+  res.status(200).json({ memberCount });
+});
 
 app.post('/leave', express.json(), (req, res) => {
   const auth = req.headers.authorization || '';
