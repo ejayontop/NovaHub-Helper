@@ -15,7 +15,7 @@ export default {
       .setDescription('Click below to get your free key.');
 
     const row = new ActionRowBuilder().addComponents(
-      new ButtonBuilder().setCustomId('get_free_key').setLabel('Get Free Key').setStyle(ButtonStyle.Success),
+      new ButtonBuilder().setCustomId('get_free_key').setLabel('Get Key').setStyle(ButtonStyle.Success),
     );
 
     await interaction.reply({ embeds: [embed], components: [row] });
