@@ -10,8 +10,9 @@ export default {
 
   async execute(interaction) {
     const embed = new EmbedBuilder()
-      .setColor(getColor('primary'))
-      .setTitle('Get the Script')
+      .setColor(getColor('brand'))
+      .setTitle('GET SCRIPT')
+      .setImage('https://raw.githubusercontent.com/ejayontop/NovaHub-Helper/refs/heads/main/src/commands/Community/novahubbanner.png') // <-- add this
       .setDescription('Click below to get the script.');
 
     const row = new ActionRowBuilder().addComponents(
