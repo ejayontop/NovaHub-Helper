@@ -11,7 +11,7 @@ export default {
   async execute(interaction) {
     const embed = new EmbedBuilder()
       .setColor(getColor('primary'))
-      .setTitle('Get Your Free Key')
+      .setTitle('Get Key | Expiration Date: July 24, 2026')
       .setDescription('Click below to get your free key.');
 
     const row = new ActionRowBuilder().addComponents(
