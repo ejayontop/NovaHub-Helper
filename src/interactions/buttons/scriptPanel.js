@@ -1,4 +1,4 @@
-const EPHEMERAL_LIFETIME_MS = 60 * 1000;
+const EPHEMERAL_LIFETIME_MS = 50 * 1000;
 
 async function replyThenDelete(interaction, content) {
   await interaction.reply({ content, ephemeral: true });
