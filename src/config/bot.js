@@ -76,6 +76,7 @@ activeScript: {
       // Main brand colors.
       primary: "#336699",
       secondary: "#2F3136",
+      brand: "#502aa0",
 
       // Standard status colors for success/error/warning/info messages.
       success: "#57F287",
