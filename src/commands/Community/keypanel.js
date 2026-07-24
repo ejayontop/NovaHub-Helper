@@ -11,7 +11,7 @@ export default {
   async execute(interaction) {
     const embed = new EmbedBuilder()
       .setColor(getColor('brand'))
-      .setTitle('400+ Members FREE Premium Key by 7 Days (Free)')
+      .setTitle('400+ Members FREE Premium Key by 7 Days (Free) @vlan.bin')
        .setImage('https://raw.githubusercontent.com/ejayontop/NovaHub-Helper/refs/heads/main/src/commands/Community/novahubbanner.png')
       .setDescription('New Expiration Date: July 24, 2026');
 
