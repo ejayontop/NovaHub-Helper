@@ -22,7 +22,7 @@ export default [
     async execute(interaction) {
       await replyThenDelete(
         interaction,
-        'NOVAHUB_8f2kx7me'
+        'NOVAHUB_Q7mZ2pL9xR'
       );
     },
   },
