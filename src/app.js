@@ -214,6 +214,13 @@ class TitanBot extends Client {
       });
     });
 
+    // ADD IT HERE — before startServer(configuredPort, 0);
+app.post('/webhooks/socialbuzz', express.raw({ type: '*/*' }), (req, res) => {
+  logger.info('SocialBuzz webhook raw body:', req.body.toString('utf8'));
+  logger.info('SocialBuzz webhook headers:', req.headers);
+  res.status(200).json({ received: true });
+});
+
     const HEARTBEAT_API_KEY = process.env.HEARTBEAT_API_KEY || 'a3f9c21e8b47d0f6c9e2a1b4d8f0e6c3a9d2b7e4f1c8a0b6';
 
 app.post('/heartbeat', express.json(), (req, res) => {
